@@ -1,0 +1,14 @@
+# Site settings
+title: reading and rambling
+email: mrmin123@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  reading and rambling, a site where I post my ramblings after my book readings
+baseurl: "/read" # the subpath of your site, e.g. /blog/
+url: "http://minyoung.ch" # the base hostname & protocol for your site
+
+# Build settings
+include: [img/]
+markdown: kramdown
+permalink: /:year-:month-:day/:title
+paginate: 5
+paginate_path: /page:num

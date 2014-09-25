@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+{% for post in paginator.posts %}
+<div class="box_container">
+    <div class="box box_index">
+        <ul class="book_container clearfix">
+            <li>
+                <div class="book">
+                    <div class="book_front">
+                        <div class="book_cover" style="background-image: url( {{ post.book_graphic_url | prepend: '/img/' | prepend: site.baseurl }} );" ></div>
+                    </div>
+                    <div class="book_back"></div>
+                    <div class="book_left" style="background-color: {{ post.book_graphic_color }};"></div>
+                </div>
+            </li>
+        </ul>
+
+        <h2>
+            <span><a href="{{ post.url | prepend: site.baseurl }}">{{ post.book_title }}</a></span>
+            <span>{{ post.book_author }}</span>
+        </h2>
+
+        <p>
+            {{ post.snippet }}
+        </p>
+
+        <span class="link"><a href="{{ post.url | prepend: site.baseurl }}">{% icon fa-hand-o-right %} read {{ post.review_date | date: "%b %-d, %Y" }} review</a> (<a href="{{ post.goodreads_url }}">on Goodreads</a>)</span>
+    </div>
+</div>
+{% endfor %}
+
+{% if paginator.total_pages > 1 %}
+<div class="box_container">
+    <div class="box box_pagination">
+    {% if paginator.previous_page %}
+        <span class="pagination_prev">{% icon fa-chevron-circle-left %}<a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">newer</a></span>
+    {% endif %}
+    {% for page in (1..paginator.total_pages) %}
+        {% if page == paginator.page %}
+            {{ page }}
+        {% elsif page == 1 %}
+            <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+        {% else %}
+            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if paginator.next_page %}
+        <span class="pagination_next"><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">older</a>{% icon fa-chevron-circle-right %}</span>
+    {% endif %}
+    </div>
+</div>
+{% endif %}
