@@ -1,0 +1,7 @@
+_posts
+_site
+img
+build_publish.sh
+build_test.sh
+feed.xml
+_config.yml

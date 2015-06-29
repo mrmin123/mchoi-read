@@ -2,38 +2,45 @@
 layout: default
 ---
 <div class="box_container">
-    <div class="box box_post">
-        <ul class="book_container clearfix">
-            <li>
-                <div class="book">
-                    <div class="book_front">
-                        <div class="book_cover" style="background-image: url( {{ page.book_graphic_url | prepend: '/img/' | prepend: site.baseurl }} );" ></div>
-                    </div>
-                    <div class="book_back"></div>
-                    <div class="book_left" style="background-color: {{ page.book_graphic_color }};"></div>
-                </div>
-            </li>
-        </ul>
-    
-        <h2>
-            <span>{{ page.book_title }}</span>
-            <span>{{ page.book_author }}</span>
-        <h2>
-        
-        <h3>
-            <span>{% icon fa-calendar %} {{ page.review_date | date: "%b %-d, %Y" }} review</span>
-            <span>(read between {{ page.read_start_date | date: "%b %-d, %Y" }} &ndash; {{ page.read_finish_date | date: "%b %-d, %Y" }})</span>
-        </h3>
-        
-        <h4>
-            <span>{% icon fa-share-square %} {{ page.reading }} reading</span>
-            <span>{% icon fa-external-link-square %} <a href="{{ page.goodreads_url }}">read review on Goodreads</a></span>
-        </h4>
-    
-        <p>
-            {{ content }}
-        </p>
-        
-        <span class="rating">{{ page.rating }}</span>
-    </div>
+	<div class="box box_post">
+		<ul class="book_container clearfix">
+			<li>
+				<div class="book">
+					<div class="book_front">
+						<div class="book_cover" style="background-image: url( {{ page.book_graphic_url | prepend: '/img/' | prepend: site.baseurl }} );" ></div>
+					</div>
+					<div class="book_back"></div>
+					<div class="book_left" style="background-color: {{ page.book_graphic_color }};"></div>
+				</div>
+			</li>
+		</ul>
+
+		<h2>
+			<span>{{ page.book_title }}</span>
+			<span>{{ page.book_author }}</span>
+		<h2>
+
+		<h3>
+			<span>{% icon fa-calendar %} {{ page.review_date | date: "%b %-d, %Y" }} review</span>
+			<span>(read between {{ page.read_start_date | date: "%b %-d, %Y" }} &ndash; {{ page.read_finish_date | date: "%b %-d, %Y" }})</span>
+		</h3>
+
+		<h4>
+			<span>{% icon fa-share-square %} {{ page.reading }} reading</span>
+			<span>{% icon fa-external-link-square %} <a href="{{ page.goodreads_url }}">read review on Goodreads</a></span>
+		</h4>
+
+		<ul class="tags">
+			<li>{% icon fa-tags %}</li>
+		{% for tag in page.tags %}
+			<li><a href="{{ site.baseurl }}/tags/#{{tag}}">{{tag}}</a></li>
+		{% endfor %}
+		</ul>
+
+		<p>
+			{{ content }}
+		</p>
+
+		<span class="rating">{{ page.rating }}</span>
+	</div>
 </div>

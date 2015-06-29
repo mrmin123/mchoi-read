@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<div class="box_container">
+	<div class="box box_page tag_page">
+
+		<ul class="tags">
+		{% assign sorted_tags = (site.tags | sort:0) %}
+		{% for tag in sorted_tags %}
+			{% assign t = tag | first %}
+			{% assign posts = tag | last %}
+			<li><a href="#{{t}}">{{t}}</a></li>
+		{% endfor %}
+		</ul>
+
+		{% for tag in sorted_tags %}
+			{% assign t = tag | first %}
+			{% assign posts = tag | last %}
+			<h2 id="{{t}}">
+				<span>{{ t | downcase }}</span>
+				<span>{{ posts | size }} post(s)</span></h2>
+			<ul class="posts">
+			{% for post in posts %}
+				{% if post.tags contains t %}
+				<li><span class="date">{{ post.date | date: "%b %-d, %Y"}}</span> <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+				{% endif %}
+			{% endfor %}
+			</ul>
+		{% endfor %}
+		</div>
+	</div>
+</div>
