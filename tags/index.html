@@ -22,7 +22,7 @@ layout: default
 			<ul class="posts">
 			{% for post in posts %}
 				{% if post.tags contains t %}
-				<li><span class="date">{{ post.date | date: "%b %-d, %Y"}}</span> <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+				<li><span class="date">{{ post.date | date: "%b %-d, %Y"}}</span> <a href="{{ post.url | prepend: site.baseurl }}">{{ post.book_title }}</a>{% if post.book_author %} by {{ post.book_author }}{% endif %}</li>
 				{% endif %}
 			{% endfor %}
 			</ul>
